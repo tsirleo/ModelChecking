@@ -1,0 +1,39 @@
+
+Контрпример:
+
+> spin -t three_pots.pml
+ltl goalNotReached: ! (<> (((pot3l==2)) && ((counter==4))))
+Never claim moves to line 4	[(1)]
+          Pour 3 liters from 7L pot to 3L pot
+          Pour 3 liters from 3L pot to 4L pot
+          Pour 3 liters from 7L pot to 3L pot
+          Pour 1 liters from 3L pot to 4L pot
+spin: _spin_nvr.tmp:3, Error: assertion violated
+spin: text of failed assertion: assert(!(((pot3l==2)&&(counter==4))))
+Never claim moves to line 3	[assert(!(((pot3l==2)&&(counter==4))))]
+spin: trail ends after 21 steps
+#processes: 1
+		pot7l = 1
+		pot3l = 2
+		pot4l = 4
+		counter = 4
+		amount = 1
+ 21:	proc  0 (main:1) three_pots.pml:20 (state 85)
+ 21:	proc  - (goalNotReached:1) _spin_nvr.tmp:2 (state 6)
+1 processes created
+
+
+
+Memory stats:
+
+Stats on memory usage (in Megabytes):
+   19.985	equivalent memory usage for states (stored*(State-vector + overhead))
+   15.812	actual memory usage for states (compression: 79.12%)
+         	state-vector as stored = 29 byte + 28 byte overhead
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  144.257	total actual memory usage
+
+pan: elapsed time 0.14 seconds
+pan: rate 2078992.9 states/second
+
