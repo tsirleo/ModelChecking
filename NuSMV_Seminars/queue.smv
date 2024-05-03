@@ -1,0 +1,50 @@
+MODULE fifo(enq_val, enq_data, deq_val, deq_data)
+MODULE Fifo
+    VAR
+        buffer : array 0..7 of word[8];
+        head : word[3];
+        tail : word[3];
+    ASSIGN
+        init(head) := 0b3_0;
+        init(tail) := 0b3_0;
+        
+
+
+    DEFINE add_element(in_enq_val, in_enq_data)
+        IF
+            ((tail = head-1) | (tail = 4 & head = 0))
+        THEN
+            TRUE
+        ELSE
+            buffer[tail] := in_enq_data; 
+            tail := tail + 1;
+            (head = head)
+        FI;
+
+    DEFINE remove_element()
+        IF
+            (head = tail)
+        THEN
+            TRUE
+        ELSE
+            head := head + 1;
+            (tail = tail)
+        FI;
+
+    DEFINE get_element(out_deq_data)
+        IF
+            (head = tail)
+        THEN
+            out_deq_data := 0;
+        ELSE
+            out_deq_data := buffer[head];
+        FI;
+
+    DEFINE is_empty := (head = tail);
+    DEFINE is_full := ((tail = head-1) | (tail = 4 & head = 0));
+
+    LTLSPEC
+        G(!(tail = head-1));
+        G!(head = tail); 
+        G(head <= 4 & tail <= 4);
+

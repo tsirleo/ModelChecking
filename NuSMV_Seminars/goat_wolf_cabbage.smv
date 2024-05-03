@@ -1,0 +1,20 @@
+MODULE main
+    VAR
+        boat : boolean;
+        wolf : boolean;
+        goat : boolean;
+        cabbage : boolean;
+    ASSIGN
+        init(boat) := FALSE;
+        next(boat) := !boat;
+        init(wolf) := FALSE;
+        init(goat) := FALSE;
+        init(cabbage) := FALSE;
+    INVAR
+        (wolf = goat -> wolf = boat) & (goat = cabbage -> goat = boat)
+    TRANS
+        count(goat = next(goat), wolf = next(wolf), cabbage = next(cabbage)) >= 2;
+    LTLSPEC
+        !F(count(goat, wolf, cabbage) = 3)
+    TRANS
+        (goat != next(goat) -> boat = goat) & (cabbage != next(cabbage) -> boat = cabbage) & (wolf != next(wolf) -> boat = wolf);
