@@ -14,8 +14,12 @@
 
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <vector>
+#include <string>
+#include <climits>
+#include <map>
 
 #include "formula.h"
 
@@ -41,12 +45,16 @@ public:
   static const Node one;
 
   // TODO: To be implemented in 'bdd.cpp'.
+  const Node& reduce_and_compose(int var, const Node * low, const Node * high);
   const Node& create(const Formula &formula);
 
 private:
   // Pool of nodes organized so as to effeciently
   // search for a given (var, low, high).
-  // TODO:
+  std::map<std::tuple<int, const Node *, const Node *>, const Node> nodepool;
 };
+
+void bdd_print_horizontal(const Node * node, std::string const & rpref = "", std::string const & cpref = "", std::string const & lpref = "");
+void bdd_print_vertical(const Node *node, std::vector<std::string> const & lpref = std::vector<std::string>(), std::vector<std::string> const & cpref = std::vector<std::string>(), std::vector<std::string> const & rpref = std::vector<std::string>(), bool root = true, bool left = true, std::shared_ptr<std::vector<std::vector<std::string>>> lines = nullptr);
 
 } // namespace model::bdd
