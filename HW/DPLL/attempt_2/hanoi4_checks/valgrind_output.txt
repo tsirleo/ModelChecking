@@ -1,0 +1,21 @@
+==1811051== Memcheck, a memory error detector
+==1811051== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1811051== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1811051== Command: ./test ../cnf/sat/hanoi/hanoi4.cnf
+==1811051== 
+---------------------------------------------------------------------
+Number of variables = 718
+Number of clauses = 4934
+Result = SAT
+Working time of the 'hanoi4' test = 1.19668 sec
+---------------------------------------------------------------------
+==1811051== 
+==1811051== HEAP SUMMARY:
+==1811051==     in use at exit: 0 bytes in 0 blocks
+==1811051==   total heap usage: 40,197 allocs, 40,197 frees, 2,768,988 bytes allocated
+==1811051== 
+==1811051== All heap blocks were freed -- no leaks are possible
+==1811051== 
+==1811051== For lists of detected and suppressed errors, rerun with: -s
+==1811051== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
